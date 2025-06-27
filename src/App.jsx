@@ -1,16 +1,29 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import { addComment, deleteComment } from "./redux/commentSlice";
+import { selectComment } from "./redux/selectors";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import FormGroup from "react-bootstrap/FormGroup";
 import Form from "react-bootstrap/Form";
+import { ListGroup } from "react-bootstrap";
+import Stack from "react-bootstrap/Stack";
 
 function App() {
   const [movie, setMovie] = useState([]);
   const [error, setError] = useState(null);
+  const [input, setInput] = useState("");
+  const [input1, setInput1] = useState("");
+  const dispatch = useDispatch();
+  const comment = useSelector(selectComment);
+  const handleAddComment = (e) => {
+    e.preventDefault();
+    dispatch(addComment({ text: input, note: input1 }));
+    setInput("");
+    setInput1("1");
+  };
 
   useEffect(() => {
     async function fetchMovie() {
@@ -65,14 +78,21 @@ function App() {
             </Card.Body>
           </Card>
         ))}
-        <Form>
-          <Form.Group className="mb-3" controlId="name">
+        <Form onSubmit={handleAddComment}>
+          <Form.Group className="mb-3" controlId="commentary">
             <Card.Title>Commentaires</Card.Title>
             <Form.Label>Ajouter un commentaire</Form.Label>
-            <Form.Control type="text" placeholder="Ecrire un commentaire" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="note">
-            <Form.Select name="note">
+            <Form.Control
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ecrire un commentaire"
+            />
+            <Form.Select
+              name="note"
+              value={input1}
+              onChange={(e) => setInput1(e.target.value)}
+            >
               <option value="1">1/10</option>
               <option value="2">2/10</option>
               <option value="3">3/10</option>
@@ -84,30 +104,39 @@ function App() {
               <option value="9">9/10</option>
               <option value="10">10/10</option>
             </Form.Select>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="isCompleted">
             <Form.Check
               type="checkbox"
               label="J'accepte les conditions générales"
             />
+            <Button variant="primary" type="submit">
+              Ajouter
+            </Button>
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Envoyer
-          </Button>
         </Form>
-        <Card className="movie-card">
-            <Card.Body>
-              <Card.Text className="note">
-                {"Note :"}
-              </Card.Text>
-              <Card.Text className="commentary">
-                {"Commentaire :"}
-              </Card.Text>
-              <Button variant="danger" type="submit">
-                Supprimer
-              </Button>        
-            </Card.Body>
-          </Card>
+
+        <ListGroup>
+          {comment.map((comment) => (
+            <ListGroup.Item key={comment.id}>
+              <Row className="align-items-center">
+                <Form.Label className="fw-bold">
+                  {" "}
+                  Note : {comment.note}/10
+                </Form.Label>
+                <Form.Label>{comment.text}</Form.Label>
+                <Stack direction="horizontal" className="justify-content-end">
+                  <Button
+                    onClick={() => dispatch(deleteComment(comment.id))}
+                    variant="danger"
+                    size="sm"
+                    type="submit"
+                  >
+                    Supprimer
+                  </Button>
+                </Stack>
+              </Row>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
       </Row>
     </Container>
   );
