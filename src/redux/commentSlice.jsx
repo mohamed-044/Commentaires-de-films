@@ -6,18 +6,16 @@ const commentSlice = createSlice({
   name: "comment",
   initialState,
   reducers: {
-    addComment: (state, action) => {
-      state.push({ id: nanoid(), text: action.payload.text, note: action.payload.note });
+    addComment: {
+      reducer(state, action) {
+        state.push(action.payload);
+      },
     },
-    prepare({ text, note }) {
-    return { payload: { text, note } };
+    deleteComment(state, action) {
+      return state.filter((comment) => comment.id !== action.payload);
     },
-
-    deleteComment: (state, action) =>
-      state.filter(t => t.id !== action.payload), 
   },
 });
-
 
 export const { addComment, deleteComment } = commentSlice.actions;
 export default commentSlice.reducer;
