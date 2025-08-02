@@ -2,6 +2,11 @@
 
 Un site permettant de consulter et laisser des avis sur des films. Développé avec **React** et **Vite**.
 
+🔗 **Accéder au site en ligne** :  
+➡️ [https://mohamed-044.github.io/Commentaires-de-films](https://mohamed-044.github.io/Commentaires-de-films)
+
+---
+
 ## 💫 À propos du projet
 Tu peux pour chaque film, ajouter un commentaire, noter une œuvre, et visualiser les avis des autres utilisateurs.
 
