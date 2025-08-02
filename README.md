@@ -1,12 +1,21 @@
-# React + Vite
+# 🎬 Commentaires de films
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un site permettant de consulter et laisser des avis sur des films. Développé avec **React** et **Vite**.
 
-Currently, two official plugins are available:
+## 💫 À propos du projet
+Tu peux pour chaque film, ajouter un commentaire, noter une œuvre, et visualiser les avis des autres utilisateurs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack
+![React](https://img.shields.io/badge/react-%2320232a?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-## Expanding the ESLint configuration
+## 🚀 Installation & développement local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/mohamed-044/Commentaires-de-films.git
+cd Commentaires-de-films
+npm install
+npm run dev
