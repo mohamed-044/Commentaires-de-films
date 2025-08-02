@@ -51,7 +51,7 @@ function App() {
   useEffect(() => {
     async function fetchMovie() {
       try {
-        const response = await fetch("https://movies.digistos.com/");
+        const response = await fetch("https://jsonfakery.com/movies/random/1");
         if (!response.ok) {
           throw new Error(
             `Erreur HTTP: ${
